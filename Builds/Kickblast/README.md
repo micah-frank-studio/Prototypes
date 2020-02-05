@@ -20,6 +20,9 @@ I built an installer. Just run it and point it to your plugin directory
 Thanks and have fun!
 
 Micah
+
 http://instagram.com/micah.frank.studio
+
 https://github.com/chronopolis5k
+
 http://micahfrank.com
