@@ -1,3 +1,5 @@
+![Alt text](https://github.com/micah-frank-studio/Prototypes/blob/master/GrainstationC/GrainstationC_screenshot.jpg?raw=true "Prototype 3 - Grainstation 3")
+
 PROTOTYPES
 
 Hello! Thanks for your interest in Prototypes.
