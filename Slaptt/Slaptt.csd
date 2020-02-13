@@ -1,6 +1,6 @@
 /*
 
-PROROTYPE | Slaptt
+PROROTYPE | Slaptt | Glitch Percussion Generator
 by Micah Frank 2020		
 
 */
@@ -65,11 +65,11 @@ reset:
 ;; QUICK PARAMETERS
 
 ;kick sustain values
-gikicksustain random 1, 0.01 ;generates kick btwn 0.5 & 2 sec long. Try long values (~4 sec) for some interesting results
-gikickfreq random 50, 1000 ;kick freq
+gikicksustain random 0.7, 0.01 ;generates kick btwn 0.5 & 2 sec long. Try long values (~4 sec) for some interesting results
+gikickfreq random 50, 300 ;kick freq
 gikickres random 0, 0.3 ;kick resonance. Careful!
-ginitpitch random 0.1, 3 ;pitch env init point (factor of gikickfreq 0.0 - 1.0)
-giPDecayFactor random 0.01, 0.9 ;pitch decay (factor of gikicksustain 0.0 - 1.0)
+ginitpitch random 0.1, 1 ;pitch env init point (factor of gikickfreq 0.0 - 1.0)
+giPDecayFactor random 0.01, 0.3 ;pitch decay (factor of gikicksustain 0.0 - 1.0)
 
 ;kick attack values
 giatkdur random 0.005, gikicksustain ; kick attack duration - default 0.015, 0.005
@@ -114,6 +114,8 @@ instr kick, 3
 
 ;kick sustain waveform array and selection
 ihasatk = round(random(0,1)) > 0 ? 1 : 0.001
+ihasfilt = round(random(0,1)) > 0 ? 1 : 0.001
+
 ikickSusArray[] fillarray gi1, gi2, gi3, gi4, gi5, gi6, gi7
 ikickArrayselect1 random 0,6
 iKickSelection1 = ikickSusArray[round(ikickArrayselect1)]
@@ -131,15 +133,20 @@ kamp expseg 0.9, gikicksustain, 0.001
 
 ;;kick attack
 iatkwave = iKickAtkSelection1 ; attack wave
-katkenv expseg giatklvl, giatkdur, 0.01 ;attack envelope
+katkenv expseg giatklvl*ihasatk, giatkdur, 0.001 ;attack envelope
 
 asus oscili kamp, gikickfreq*kpenv, isuswave
 aatk oscili katkenv, giatkfreq, iatkwave
 
 kfiltenv expseg giFilterInit, gikicksustain*0.25, abs(giFilterInit-(giFilterEnd*ihasatk))
 
-afilteredsig moogvcf2 asus+(aatk*ihasatk), kfiltenv, gikickres
+if ihasfilt == 1 then
+    afilteredsig moogvcf2 asus+aatk, kfiltenv, gikickres
+else
+    afilteredsig = asus+aatk
+endif
 
+aclip clip afilteredsig
 a1 limit afilteredsig, -0.9, 0.9 ;limiter
 
 chnset a1, "kickout"
