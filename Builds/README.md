@@ -1,6 +1,4 @@
-
-<a href="http://www.youtube.com/watch?feature=player_embedded&v=6wFx7nao0Bw" target="_blank">
-<img src="http://img.youtube.com/vi/6wFx7nao0Bw/0.jpg" alt="Grainstation-C" width="240" height="180" border="10" /></a>
+![Alt text](https://github.com/micah-frank-studio/Prototypes/blob/master/GrainstationC/GrainstationC_screenshot.jpg?raw=true "Prototype 3 - Grainstation 3")
 
 PROTOTYPES
 
