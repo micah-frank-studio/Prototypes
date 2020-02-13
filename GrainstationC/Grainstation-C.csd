@@ -103,17 +103,17 @@ https://www.dropbox.com/s/im1vivrjv98isub/Grainstation-C_config.mp4?dl=0
 */
 
 giwin ftgen 1, 0, 8192, 20, 2, 1  ;Hanning window
+giwindow = 1024
 
 opcode pitchdelay, aa, aakkk ;audio in / audio out, delay time, feedback, delay mix, pitchShift
 	ainL, ainR, kdelay, kfeedback, kfbpshift xin
 	
 	imaxdelay = 3; seconds
-	
 	alfoL lfo 0.05, 0.2 ; slightly mod the left delay time
 	abuf1		delayr	imaxdelay
 	atapL  deltap3    kdelay+alfoL
 	delayw ainL + (atapL * kfeedback)
-	fftinL  pvsanal   atapL, 1024, 256, 1024, 1 ; analyse it
+	fftinL  pvsanal   atapL, giwindow, giwindow/4, giwindow, 1 ; analyse it
 	ftpsL  pvscale   fftinL, kfbpshift, 1, 2          ; transpose it keeping formants
 	atpsL  pvsynth   ftpsL                     ; resynthesis
 	
@@ -123,7 +123,7 @@ opcode pitchdelay, aa, aakkk ;audio in / audio out, delay time, feedback, delay 
 	abuf2		delayr	imaxdelay
 	atapR  deltap3    kdelay+alfoR
 	delayw  ainR + (atapR * kfeedback)
-	fftinR  pvsanal   atapR, 1024, 256, 1024, 1
+	fftinR  pvsanal   atapR, giwindow, giwindow/4, giwindow, 1
 	ftpsR  pvscale   fftinR, kfbpshift, 1, 2          
 	atpsR  pvsynth   ftpsR                    
 	
