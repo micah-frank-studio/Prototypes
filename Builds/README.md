@@ -6,6 +6,8 @@ Hello! Thanks for your interest in Prototypes.
 
 These are small, experimental sketches that are built as proof-of-concept distributions.
 
+See all of them here: https://www.instagram.com/explore/tags/mfprototypes/
+
 I do not provide installers or support for them but I will make an effort to reply to questions on IG or Github Issues.
 
 For the most part, they should function as expected as I've tested them on my own systems.
