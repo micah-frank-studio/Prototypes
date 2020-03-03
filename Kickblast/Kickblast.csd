@@ -1,6 +1,6 @@
 /*
 
-PROROTYPE | KICKBLAST
+PROTOTYPE | KICKBLAST
 by Micah Frank 2020		
 
 */
