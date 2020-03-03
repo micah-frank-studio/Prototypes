@@ -14,3 +14,5 @@ https://www.instagram.com/p/B8bpzxmhlk2/
 
 Nocobot - Synthesized glitch percussion Generator
 https://www.instagram.com/p/B8tnFqJhsow/
+
+Echolift - Delay buffer sampler
