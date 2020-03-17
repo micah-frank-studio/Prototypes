@@ -6,23 +6,23 @@
 <Cabbage>
 ;Beatfox Prototype 1.0.1
 #define KNOB1  outlinecolour(255,255,255,50) trackercolour(255,255,255,220), trackerthickness (0.2), style ("normal"), trackeroutsideradius(1), trackerinsideradius (0.01), colour(0, 0, 0), textcolour(255,255,255)
-form caption("Beatfox") size(500, 380), pluginid("4490")
-image bounds(0, 0, 354, 345), colour(0, 0, 0) file("beatfox-bg.png")
+form caption("Beatfox") size(500, 320), pluginid("4490")
+image bounds(0, 0, 500, 320), colour(0, 0, 0) file("beatfox-bg.png")
 nslider bounds(10, 98, 70, 50), channel("Amount"), text("HOW MANY?"), range(0, 10000, 10, 1, 1), textcolour(255, 255, 255), fontcolour(255, 255, 255), velocity(100)
 rslider bounds(280, 20, 70, 70),channel("Steps"), text("STEPS"), range(4, 128, 16, 1, 1), $KNOB1
-rslider bounds(210, 90, 70, 70),channel("MinBpm"), text("MIN BPM"), range(1, 400, 60, 1, 1), $KNOB1
-rslider bounds(280, 90, 70, 70),channel("MaxBpm"), text("MAX BPM"), range(1, 400, 140, 1, 1), $KNOB1
-rslider bounds(350, 20, 70, 70),channel("BD"), text("BD"), range(0, 1, 0.5, 1, 0.001), popuptext(0), $KNOB1
+rslider bounds(210, 90, 70, 70),channel("MinBpm"), text("MIN BPM"), range(1, 200, 80, 1, 1), $KNOB1
+rslider bounds(280, 90, 70, 70),channel("MaxBpm"), text("MAX BPM"), range(1, 200, 140, 1, 1), $KNOB1
+rslider bounds(350, 20, 70, 70),channel("LevelBD"), text("BD"), range(0, 1, 0.5, 1, 0.001), popuptext(0), $KNOB1
 rslider bounds(420, 20, 70, 70),channel("DensBD"), text("DENSITY BD"), range(0, 1, 0.2, 1, 0.001), popuptext(0), $KNOB1
-rslider bounds(350, 90, 70, 70),channel("SD1"), text("SD1"), range(0, 1, 0.5, 1, 0.001), popuptext(0), $KNOB1
+rslider bounds(350, 90, 70, 70),channel("LevelSD1"), text("SD1"), range(0, 1, 0.5, 1, 0.001), popuptext(0), $KNOB1
 rslider bounds(420, 90, 70, 70),channel("DensSD"), text("DENSITY SD1"), range(0, 1, 0.5, 1, 0.001), popuptext(0), $KNOB1
-rslider bounds(350, 160, 70, 70),channel("SD2"), text("SD2"), range(0, 1, 0.5, 1, 0.001), popuptext(0), $KNOB1
-rslider bounds(350, 230, 70, 70),channel("HH"), text("HH"), range(0, 1, 0.5, 1, 0.001), popuptext(0), $KNOB1
+rslider bounds(420, 160, 70, 70),channel("DensPerc"), text("DENSITY PERC"), range(0, 1, 0.5, 1, 0.001), popuptext(0), $KNOB1
+rslider bounds(350, 160, 70, 70),channel("LevelPerc"), text("PERC"), range(0, 1, 0.5, 1, 0.001), popuptext(0), $KNOB1
+rslider bounds(350, 230, 70, 70),channel("LevelHH"), text("HH"), range(0, 1, 0.5, 1, 0.001), popuptext(0), $KNOB1
 rslider bounds(420, 230, 70, 70),channel("DensHH"), text("DENSITY HH"), range(0, 1, 0.8, 1, 0.001), popuptext(0), $KNOB1
-rslider bounds(350, 300, 70, 70),channel("OH"), text("OH"), range(0, 1, 0.5, 1, 0.001), popuptext(0), $KNOB1
 button bounds(1000, 98, 100, 50), latched(0), channel("Stop"), text("STOP (at end of  current beat)"),identchannel("stopIdent"), fontcolour(255, 255, 255), colour:0(19, 19, 19, 255), colour:1(19, 19, 19, 255)
 filebutton bounds(100, 98, 100, 50), channel("Directory"), text("RUN"),identchannel("dirIdent"), mode("directory"), fontcolour(255, 255, 255), colour:0(19, 19, 19, 255), colour:1(19, 19, 19, 255)
-csoundoutput bounds(10, 166, 331, 370), colour("19,19,19"),fontcolour(255, 255, 255)
+csoundoutput bounds(10, 166, 331, 150), colour("19,19,19"),fontcolour(255, 255, 255)
 </Cabbage>
  
 
@@ -50,11 +50,6 @@ gi9 ftgen 9,0,129,7,-1,128,1 ;actually natural
 gi10 ftgen     0, 0, 2^10, 10, 1, 0, -1/9, 0, 1/25, 0, -1/49, 0, 1/81
 gi11 ftgen     0, 0, 2^10, 10, 1, 1, 1, 1, 1, 1, 1, 1, 1
 
-;;set mixer levels (0 to 0.9 on last parameter)
-MixerSetLevel 2, 97, 0.8 ;kick
-MixerSetLevel 3, 97, 0.8 ;snare 1
-MixerSetLevel 4, 97, 0.6 ;snare 2 (tuned percussion)
-MixerSetLevel 5, 97, 0.4 ;hat
 
 ;grid resolution
 giMasterGridRes = 4 ;(2=8th notes, 4=16th notes, 8=32nd notes, etc)
@@ -64,7 +59,6 @@ gibpm init 0
 giBeatsPerSec init 0
 
 schedule 1, 0, 10000 ;prime globals
-schedule 97, 0, 10000 ;prime mixer
 
 instr 1
 gSdir chnget "Directory"
@@ -127,26 +121,45 @@ ktime timeinsts
 
 ;;kick values generation
 giCounter init 0
-gikicksustain random 0.5, 2.0
-gikickfreq random 30, 80 ;kick freq
-gikickres random 0, 0.5 ;kick resonance
+gikicksustain random 0.15, 1.0
+gikickfreq random 50, 80
+gikickres random 0, 0.6
 
 ;;kick attack values
-giatkdur random 0.15, 0.005 ; kick attack duration
-giatkfreq random 80, 200 ;kick attack freq
-giatklvl random 0.4, 0.8 ;attack portion level
+giattackfactor random 0.01, 0.25
+giatkdur random gikicksustain*giattackfactor, 0.05 ;attack portion < 25% of sus
+giatkfreq random 70, 100 
+giatklvl random 0.9, 0.3
 
 ;;snare values generation
-gisnarefreq random 100, 500
-gioscfreq random 200, 1000 ;primary snare freq
-gisnaredur random 0.05, 0.5 
-gisnareatk random gisnaredur*0.25, 0.15 ;snare attack dur
-gisnarefiltinit random 5000, 10000
-gisnarefiltsus random 1000, 500
-gisnareres random 0.2, 0.7
-gisnpenvinit random gioscfreq, 10000 ; choose p env init from freq val
-gisnpenvdur random gisnaredur*.25, gisnaredur ;pith env duration
-giSnaremeth random 0.2, 0.9
+gisnarefreq random 60, 200
+gipw random 0.01, 0.99 ;pulse width of snare vco2
+gisnlev random 0.1, 0.5
+gisnaredur random 0.4, 0.01 
+gisnareatk random gisnaredur*0.1, gisnaredur*0.9
+gisnarefiltinit random 60,200
+gisnarefiltsus random  100, 600
+gisnareres random 0.01, 0.7
+gisnpenvinit random gisnarefreq, gisnarefreq+300 ; choose initial filt value from freq val
+gisnpenvdur random gisnaredur*0.5, gisnaredur*0.01
+giSnaremeth random 0.01, 0.5
+ginoisetype random 0.1, 0.6
+giSynthWaveSelect1 random 0,10.9
+
+;; noco random values
+;perc sustain waveform array and selection
+gihasatk = round(random(0,1)) > 0 ? 1 : 0.001
+gihasfilt = round(random(0,1)) > 0 ? 1 : 0.001 
+gipercAtkSelect1 random 0,4
+gipercArrayselect1 random 0,4
+gimaxnocolen = 0.5 ;;maximum noco decay time
+gipercfreq random 50, 1000 ; freq
+
+ginocoatkfreq random 50, 400 ;perc attack freq - default 50, 400
+ginocoatklvl random 0.01, 0.5 ;attack portion level - default 0.1, 0.5
+ginocoFilterInit random 200, 3000
+ginocoFilterEnd random 20, 1000
+
 
 ;;hats values generation
 gihatsfreq1 random 100, 500
@@ -181,94 +194,110 @@ kfiltenv expseg 3000, gikicksustain, 20
 
 afilteredsig moogvcf2 asus + aatk, kfiltenv, gikickres
 
-MixerSend afilteredsig*chnget("BD"), 2, 97, 0
+akick = afilteredsig*(chnget("LevelBD"))
+
+outs akick, akick
 
 endin
 
 instr snare1, 4
-ifn  = gi1
-irandomAmp=random(0.1, 0.5)*chnget("SD1")
-kamp expseg irandomAmp, gisnaredur, 0.001
-kampNoise expseg irandomAmp, gisnaredur*0.5, 0.001 ;make noise portion 1/2 length of snare
-ksnpenv expseg gisnpenvinit, gisnpenvdur, 0.001 ; snare pitch envelope
-asnare oscili kamp, gisnarefreq, ifn
-kfiltenv expseg gisnarefiltinit, gisnareatk, gisnarefiltsus, gisnaredur-gisnareatk, gisnarefiltsus
-anoise noise kampNoise, 0
-afilteredsig moogvcf2 anoise + asnare, kfiltenv, gisnareres
-MixerSend afilteredsig, 3, 97, 0
+itablearray [] fillarray gi1,gi2,gi3,gi4,gi5,gi6,gi7,gi8,gi9, gi10, gi11
 
+	
+ifn = itablearray[giSynthWaveSelect1] ;waveform is static throughoutv
+
+irandomAmp random 0.2, 0.5
+irevAmp random 0.4, 0.1
+
+kamp expseg irandomAmp, gisnaredur, 0.001
+kampsn expseg irandomAmp, gisnaredur*0.5, 0.001 ;snare portion is half length
+
+ksnpenv expseg gisnpenvinit, gisnpenvdur, gisnarefreq ; snare pitch envelope
+asig vco2 kamp, ksnpenv, 4, gipw
+asnare noise kampsn, ginoisetype
+kfiltenv expseg gisnarefiltinit, gisnareatk, gisnarefiltsus, gisnaredur-gisnareatk, gisnarefiltsus
+
+afilteredsig butterhp (asig + (asnare*gisnlev)), kfiltenv
+
+afilteredsig clip afilteredsig, 1, gisnareres
+
+asnare =  afilteredsig*(chnget("LevelSD1"))
+
+outs asnare, asnare
 
 endin
 
-instr snare2, 5
-ifn  = gi1
-irandomAmp=random(0.1, 0.5)*chnget("SD2")
+instr 5, perc
+;params
+gipercsustain random 0.01, gimaxnocolen ; generates sustain between 0.01 and max length set
+gipercres random 0, 0.7 ; resonance. Careful!
+ginitpitch random 0.01, gipercsustain ;pitch env init point (factor of gipercfreq 0.0 - 1.0)
+giPDecayFactor random 0.9, 0.01 ;pitch decay (factor of gipercsustain 0.0 - 1.0)
 
-iSnare2_rand1 random 0, 2
-iSnare2_rand2 random 0, 1
-iSnare2_rand3 random 0, 1
+;noco attack values
+ginocoatkdur random 0.005, gipercsustain*0.25 ; perc attack duration. At most, half of total sustain
 
-kamp expseg irandomAmp, gisnaredur*iSnare2_rand1, 0.001
-ksnpenv expseg gisnpenvinit, gisnpenvdur*iSnare2_rand2, 0.001 ; snare pitch envelope
-asig oscili kamp, gisnarefreq*iSnare2_rand3, ifn
-asnare pluck kamp, gisnarefreq*iSnare2_rand1, gisnarefreq, 0, 3, giSnaremeth
-kfiltenv expseg gisnarefiltinit, gisnareatk, gisnarefiltsus, gisnaredur-gisnareatk, gisnarefiltsus
+ipercSusArray[] fillarray gi1, gi4, gi5, gi6, gi7
+ipercSelection1 = ipercSusArray[round(gipercArrayselect1)]
 
-afilteredsig moogvcf2 asig + asnare, kfiltenv, gisnareres
+;perc attack waveform array and selection
+ipercAtkArray[] fillarray gi1, gi4, gi5, gi6, gi7
+ipercAtkSelection1 = ipercAtkArray[round(gipercAtkSelect1)]
 
-MixerSend afilteredsig, 4, 97, 0
+;;perc sustain
+isuswave  =  ipercSelection1 ;choose waveform
+kpenv expseg ginitpitch, ginocoatkdur, 1, (gipercsustain-ginocoatkdur)*giPDecayFactor, 0.001  ;modulate pitch.
 
+kamp expseg 0.5, gipercsustain, 0.001
 
+;;perc attack
+iatkwave = ipercAtkSelection1 ; attack wave
+katkenv expseg ginocoatklvl, ginocoatkdur, 0.001 ;attack envelope
 
+asus oscili kamp, gipercfreq, isuswave
+aatk oscili katkenv, ginocoatkfreq, iatkwave
+
+kfiltenv expseg ginocoFilterInit, gipercsustain*0.25, abs(ginocoFilterInit-(ginocoFilterEnd*gihasatk))
+idelAmp random 0, 0.2
+if gihasfilt == 1 then
+    afilteredsig moogvcf2 asus+aatk, kfiltenv, gipercres
+else
+    afilteredsig = asus + aatk
+endif
+;anocoL, anocoR pan2 afilteredsig, 0.5+(gauss(0.5))
+afilteredsig limit afilteredsig, -0.9, 0.9 ;limiter
+aperc = afilteredsig*chnget("LevelPerc")
+outs aperc, aperc
 endin
 
 instr hats, 6
-irandomAmp=random(0.1, 0.3)*chnget("HH")
-;decide whether "closed" or "open" hat
+gihatsdecayshort random 0.01, 0.4
+irandomAmp random 0.1, 0.5
+;decide wheather "closed" or "open" hat
 iclosedOrOpen random 0,1
 ihatdecay = iclosedOrOpen > 0.9 ? gihatsdecaylong : gihatsdecayshort
-ifn  = gi5 ;noise 
-kamp linseg irandomAmp, ihatdecay, 0.001
-ahat1 oscili kamp, gihatsfreq1, ifn
+ifn  = gi8 ;square wave
+kamp expseg irandomAmp, ihatdecay, 0.001
+ahat1 vco2 kamp, gihatsfreq1, ifn
 ahat2 oscili kamp, gihatsfreq2, ifn
+irevAmp random 0.05, 0.3
+idelAmp random 0.01, 0.5
+abp butterhp ahat1 + ahat2, gihatbpf ;highpass filter hats
 
-;SHOULD PROB CHANGE SAMPLE & HOLD DURS TO MATCH NOTE LENGTH!!!
-
-if gihatmod > 0.5 then
-	kmodfreq randomh 500, -600, 0.2, 3
-	else
-	kmodfreq = 1
-endif
-
-alow, ahigh, aband svfilter ahat1 + ahat2, gihatbpf + kmodfreq, 100 
-
-MixerSend ahat1 + ahat2, 5, 97, 0
-
-
+;chnmix abp, "drums"
+ahat = abp*chnget("LevelHH")
+outs ahat, ahat
 endin 
-
-instr mixer, 97
-;;mixer receive section
-
-	amix MixerReceive 97, 0
-	a1 limit amix, -0.6, 0.6 ;limit weird shit
-	outs a1, a1
-	MixerClear
-
-endin
 
 
 instr drumsSeq, 98
 ;densities
 
-giKickdensity = 1-(chnget("DensBD"))
-giSnaredensity = 1-(chnget("DensSD"))
-giHatsdensity = 1-(chnget("DensHH"))
+gkKickdensity chnget "DensBD"
+gkSnaredensity chnget "DensSD"
+gkPercdensity chnget "DensPerc"
+gkHatsdensity chnget "DensHH"
 
-
-giKickdensity random 0.7,0.9  ;0 is more dense, 1 is less - default 0.7,0.9
-giSnaredensity random 0.6,0.9  ;0 is more dense, 1 is less - default 0.6,0.9
-giHatsdensity random 0.3,0.7  ;0 is more dense, 1 is less - default 0.3,0.7
 
 
 iGridRes1 = giBeatsPerSec * giMasterGridRes
@@ -278,22 +307,22 @@ if ktrig = 1 then
 	;make random values for voice that decide against density value
 	kKickDecider random 0, 1
 	kSnare1Decider random 0, 1
-	kSnare2Decider random 0, 1
+	kPercDecider random 0, 1
 	kHatDecider random 0, 1
 	
-	if kKickDecider > giKickdensity then
+	if kKickDecider < gkKickdensity then
 		event "i", 3, 0, iGridRes1
 	endif
 	
-	if kSnare1Decider > giSnaredensity then
+	if kSnare1Decider < gkSnaredensity then
 		event "i", 4, 0, iGridRes1		
 	endif
 	
-	if kSnare2Decider > giSnaredensity then
+	if kPercDecider < gkPercdensity then
 		event "i", 5, 0, iGridRes1		
 	endif
 	
-	if kHatDecider > giHatsdensity then
+	if kHatDecider < gkHatsdensity then
 		event "i", 6, 0, 1		
 	endif
 	
@@ -325,6 +354,8 @@ allL, allR monitor
 
 ;;file writing
 Sfilename sprintf "%ibpm-", gibpm
+gSdir strcat gSdir, "/"
+Sfilename strcat gSdir,Sfilename
 Sfilename strcat Sfilename,Stitle 
 Sfilename strcat  Sfilename, ".wav"
 fout Sfilename, 18, allL, allR 
