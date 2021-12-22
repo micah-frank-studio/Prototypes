@@ -69,7 +69,7 @@ imaxlength = itablelength/sr ; get table length in seconds
 	ainL		inch     1               ; read audio from live input channel 1
     ainR		inch     2               ; read audio from live input channel 2
 
-;	ainL    diskin "../../Repo/puremagnetik_plugins/testSounds/Guitar-06.aif",1,0,1
+	ainL    diskin "../../Repo/puremagnetik_plugins/testSounds/Guitar-06.aif",1,0,1
 
 
 adelL, adelR vardelay ainL, ainR, ktime, krepeat

@@ -8,9 +8,9 @@ by Micah Frank 2020
 <Cabbage>
 ;Statics Prototype 1.0.1
 
-form caption("Statics") size(354, 339), pluginid("5092")
+form caption("Statics") size(354, 339), pluginId("5092")
 image bounds(0, 0, 354, 339), colour(255, 255, 255) file("statics.png")
-button bounds(20, 285, 55, 22), latched(1), text("LIKE", "UNLIKE"), channel("Like"),fontcolour:0("0,0,0"), fontcolour:1("0,0,0"), imgfile("off", "like.png"), imgfile("on", "unlike.png")
+button bounds(20, 285, 55, 22), latched(1), text("LIKE", "UNLIKE"), channel("Like"),fontColour:0("0,0,0"), fontColour:1("0,0,0"), imgFile("off", "like.png"), imgFile("on", "unlike.png")
 </Cabbage>
  
 <CsoundSynthesizer>

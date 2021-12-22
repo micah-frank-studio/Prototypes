@@ -5,24 +5,24 @@
 
 <Cabbage>
 ;Beatfox Prototype 1.0.1
-#define KNOB1  outlinecolour(255,255,255,50) trackercolour(255,255,255,220), trackerthickness (0.2), style ("normal"), trackeroutsideradius(1), trackerinsideradius (0.01), colour(0, 0, 0), textcolour(255,255,255)
-form caption("Beatfox") size(500, 320), pluginid("4490")
+#define KNOB1  outlineColour(255,255,255,50) trackerColour(255,255,255,220), trackerThickness (0.2), style ("normal"), trackerOutsideRadius(1), trackerInsideRadius (0.01), colour(0, 0, 0), textColour(255,255,255)
+form caption("Beatfox") size(500, 320), pluginId("4490")
 image bounds(0, 0, 500, 320), colour(0, 0, 0) file("beatfox-bg.png")
-nslider bounds(10, 98, 70, 50), channel("Amount"), text("HOW MANY?"), range(0, 10000, 10, 1, 1), textcolour(255, 255, 255), fontcolour(255, 255, 255), velocity(100)
+nslider bounds(10, 98, 70, 50), channel("Amount"), text("HOW MANY?"), range(0, 10000, 10, 1, 1), textColour(255, 255, 255), fontColour(255, 255, 255), velocity(100)
 rslider bounds(280, 20, 70, 70),channel("Steps"), text("STEPS"), range(4, 128, 16, 1, 1), $KNOB1
 rslider bounds(210, 90, 70, 70),channel("MinBpm"), text("MIN BPM"), range(1, 200, 80, 1, 1), $KNOB1
 rslider bounds(280, 90, 70, 70),channel("MaxBpm"), text("MAX BPM"), range(1, 200, 140, 1, 1), $KNOB1
-rslider bounds(350, 20, 70, 70),channel("LevelBD"), text("BD"), range(0, 1, 0.5, 1, 0.001), popuptext(0), $KNOB1
-rslider bounds(420, 20, 70, 70),channel("DensBD"), text("DENSITY BD"), range(0, 1, 0.2, 1, 0.001), popuptext(0), $KNOB1
-rslider bounds(350, 90, 70, 70),channel("LevelSD1"), text("SD1"), range(0, 1, 0.5, 1, 0.001), popuptext(0), $KNOB1
-rslider bounds(420, 90, 70, 70),channel("DensSD"), text("DENSITY SD1"), range(0, 1, 0.5, 1, 0.001), popuptext(0), $KNOB1
-rslider bounds(420, 160, 70, 70),channel("DensPerc"), text("DENSITY PERC"), range(0, 1, 0.5, 1, 0.001), popuptext(0), $KNOB1
-rslider bounds(350, 160, 70, 70),channel("LevelPerc"), text("PERC"), range(0, 1, 0.5, 1, 0.001), popuptext(0), $KNOB1
-rslider bounds(350, 230, 70, 70),channel("LevelHH"), text("HH"), range(0, 1, 0.5, 1, 0.001), popuptext(0), $KNOB1
-rslider bounds(420, 230, 70, 70),channel("DensHH"), text("DENSITY HH"), range(0, 1, 0.8, 1, 0.001), popuptext(0), $KNOB1
-button bounds(1000, 98, 100, 50), latched(0), channel("Stop"), text("STOP (at end of  current beat)"),identchannel("stopIdent"), fontcolour(255, 255, 255), colour:0(19, 19, 19, 255), colour:1(19, 19, 19, 255)
-filebutton bounds(100, 98, 100, 50), channel("Directory"), text("RUN"),identchannel("dirIdent"), mode("directory"), fontcolour(255, 255, 255), colour:0(19, 19, 19, 255), colour:1(19, 19, 19, 255)
-csoundoutput bounds(10, 166, 331, 150), colour("19,19,19"),fontcolour(255, 255, 255)
+rslider bounds(350, 20, 70, 70),channel("LevelBD"), text("BD"), range(0, 1, 0.5, 1, 0.001), popupText(0), $KNOB1
+rslider bounds(420, 20, 70, 70),channel("DensBD"), text("DENSITY BD"), range(0, 1, 0.2, 1, 0.001), popupText(0), $KNOB1
+rslider bounds(350, 90, 70, 70),channel("LevelSD1"), text("SD1"), range(0, 1, 0.5, 1, 0.001), popupText(0), $KNOB1
+rslider bounds(420, 90, 70, 70),channel("DensSD"), text("DENSITY SD1"), range(0, 1, 0.5, 1, 0.001), popupText(0), $KNOB1
+rslider bounds(420, 160, 70, 70),channel("DensPerc"), text("DENSITY PERC"), range(0, 1, 0.5, 1, 0.001), popupText(0), $KNOB1
+rslider bounds(350, 160, 70, 70),channel("LevelPerc"), text("PERC"), range(0, 1, 0.5, 1, 0.001), popupText(0), $KNOB1
+rslider bounds(350, 230, 70, 70),channel("LevelHH"), text("HH"), range(0, 1, 0.5, 1, 0.001), popupText(0), $KNOB1
+rslider bounds(420, 230, 70, 70),channel("DensHH"), text("DENSITY HH"), range(0, 1, 0.8, 1, 0.001), popupText(0), $KNOB1
+button bounds(1000, 98, 100, 50), latched(0), channel("Stop"), text("STOP (at end of  current beat)"),identChannel("stopIdent"), fontColour(255, 255, 255), colour:0(19, 19, 19, 255), colour:1(19, 19, 19, 255)
+filebutton bounds(100, 98, 100, 50), channel("Directory"), text("RUN"),identChannel("dirIdent"), mode("directory"), fontColour(255, 255, 255), colour:0(19, 19, 19, 255), colour:1(19, 19, 19, 255)
+csoundoutput bounds(10, 166, 331, 150), colour("19,19,19"),fontColour(255, 255, 255)
 </Cabbage>
  
 

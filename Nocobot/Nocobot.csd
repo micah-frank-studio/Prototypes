@@ -8,13 +8,13 @@ by Micah Frank 2020
 <Cabbage>
 ;Nocobot Prototype 1.0.1
 
-form caption("Nocobot") size(354, 345), pluginid("2901")
+form caption("Nocobot") size(354, 345), pluginId("2901")
 image bounds(0, 0, 354, 345), colour(255, 255, 255) file("nocobot-bg.png")
-nslider bounds(10, 98, 70, 50), channel("Amount"), text("HOW MANY?"), range(0, 127, 60, 1, 1), textcolour(19, 19, 19), fontcolour(255, 255, 255), velocity(100)
-rslider bounds(210, 90, 70, 70),channel("MaxLength"), text("MAX LENGTH"), range(0.01, 2, 0.5, 1, 0.01), outlinecolour(30,30,30,50) trackercolour(0,0,0,220), trackerthickness (0.2), style ("normal"), trackeroutsideradius(1), trackerinsideradius (0.01), colour(0, 0, 0), textcolour(0,0,0)
-button bounds(390, 98, 100, 50), latched(0), channel("Stop"), text("STOP!"),identchannel("stopIdent"), fontcolour(255, 255, 255), colour:0(19, 19, 19, 255)
-filebutton bounds(100, 98, 100, 50), channel("Directory"), text("RUN"),identchannel("blastIdent"), mode("directory"), fontcolour(255, 255, 255), colour:0(19, 19, 19, 255)
-csoundoutput bounds(10, 166, 331, 170), colour("19,19,19"),fontcolour(255, 255, 255)
+nslider bounds(10, 98, 70, 50), channel("Amount"), text("HOW MANY?"), range(0, 127, 60, 1, 1), textColour(19, 19, 19), fontColour(255, 255, 255), velocity(100)
+rslider bounds(210, 90, 70, 70),channel("MaxLength"), text("MAX LENGTH"), range(0.01, 2, 0.5, 1, 0.01), outlineColour(30,30,30,50) trackerColour(0,0,0,220), trackerThickness (0.2), style ("normal"), trackerOutsideRadius(1), trackerInsideRadius (0.01), colour(0, 0, 0), textColour(0,0,0)
+button bounds(390, 98, 100, 50), latched(0), channel("Stop"), text("STOP!"),identChannel("stopIdent"), fontColour(255, 255, 255), colour:0(19, 19, 19, 255)
+filebutton bounds(100, 98, 100, 50), channel("Directory"), text("RUN"),identChannel("blastIdent"), mode("directory"), fontColour(255, 255, 255), colour:0(19, 19, 19, 255)
+csoundoutput bounds(10, 166, 331, 170), colour("19,19,19"),fontColour(255, 255, 255)
 </Cabbage>
  
 <CsoundSynthesizer>

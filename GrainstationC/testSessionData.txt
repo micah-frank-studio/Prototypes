@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<CABBAGE_PRESETS>
+  <PRESET0 PresetName="CABBAGE_PRESETS 0" file1="/Users/micah/Dropbox/Puremagnetik/Plugin Development/Prototypes/GrainstationC/samples/xpander_pad.wav"
+           Pitch1="0.3499999940395355" Stretch1="0.2870000004768372" Density1="8.0"
+           Size1="0.4300000071525574" Type1="1.0" Filter1="5439.40478515625"
+           Time1="0.25" Feedbk1="0.25" Pshift1="0.25" Amount1="0.6499999761581421"
+           Reverb1="0.25" Volume1="0.119999997317791" file2="/Users/micah/Dropbox/Puremagnetik/Plugin Development/Prototypes/GrainstationC/samples/bowbounce.wav"
+           Pitch2="-0.1000000014901161" Stretch2="0.300000011920929" Density2="28.0"
+           Size2="0.8299999833106995" Type2="1.0" Filter2="3080.0" Time2="0.8999999761581421"
+           Feedbk2="0.25" Pshift2="0.25" Amount2="0.25" Reverb2="0.4000000059604645"
+           Volume2="0.09000000357627869" file3="/Users/micah/Dropbox/Puremagnetik/Plugin Development/Prototypes/GrainstationC/samples/ice.wav"
+           Pitch3="0.1700000017881393" Stretch3="1.559999942779541" Density3="25.0"
+           Size3="0.5" Type3="1.0" Filter3="4000.0" Time3="0.25" Feedbk3="0.25"
+           Pshift3="0.25" Amount3="0.25" Reverb3="0.4000000059604645" Volume3="0.09000000357627869"
+           file4="/Users/micah/Dropbox/Puremagnetik/Plugin Development/Prototypes/GrainstationC/samples/kik10.aif"
+           Pitch4="0.2199999988079071" Stretch4="1.700000047683716" Density4="22.0"
+           Size4="0.3899999856948853" Type4="1.0" Filter4="4000.0" Time4="0.25"
+           Feedbk4="0.25" Pshift4="0.25" Amount4="0.25" Reverb4="0.03500000014901161"
+           Volume4="0.2000000029802322"/>
+</CABBAGE_PRESETS>

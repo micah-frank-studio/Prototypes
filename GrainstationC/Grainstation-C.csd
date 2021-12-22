@@ -7,78 +7,78 @@
 
 <Cabbage>
 ; Version 1.0.0
-form caption("Grainstation-C") size(778, 715), pluginid("8209")
-#define KNOB1 outlinecolour(48,54,44,50), trackercolour(86,240,196), trackerthickness (0.2), style ("normal"), trackeroutsideradius(1), trackerinsideradius (0.01), colour(210, 215, 211, 255), textcolour(50,50,50), popuptext(0)
-#define KNOB2 outlinecolour(48,54,44,50), trackercolour(108, 92, 232, 255), trackerthickness (0.2), style ("normal"), trackeroutsideradius(1), trackerinsideradius (0.01), colour(210, 215, 211, 255), textcolour(50,50,50), popuptext(0)
+form caption("Grainstation-C") size(778, 715), pluginId("8209")
+#define KNOB1 outlineColour(48,54,44,50), trackerColour(86,240,196), trackerThickness (0.2), style ("normal"), trackerOutsideRadius(1), trackerInsideRadius (0.01), colour(210, 215, 211, 255), textColour(50,50,50), popupText(0)
+#define KNOB2 outlineColour(48,54,44,50), trackerColour(108, 92, 232, 255), trackerThickness (0.2), style ("normal"), trackerOutsideRadius(1), trackerInsideRadius (0.01), colour(210, 215, 211, 255), textColour(50,50,50), popupText(0)
 
 image bounds(0, 0, 778, 715), file("grainstationc-bg.png")
-signaldisplay bounds(0, 70, 778, 40), colour(0,0,0), backgroundcolour(42, 43, 43,0), displaytype("waveform"), signalvariable("adisplaymain"), zoom(-1)
-;signaldisplay bounds(30, 88, 120, 40), colour(86,240,196), backgroundcolour(42, 43, 43,0), displaytype("waveform"), signalvariable("adisplay1"), zoom(-1)
-;signaldisplay bounds(230, 88, 120, 40), colour(108, 92, 232), backgroundcolour(42, 43, 43,0), displaytype("waveform"), signalvariable("adisplay2"), zoom(-1)
-;signaldisplay bounds(430, 88, 120, 40), colour(7,132,227), backgroundcolour(42, 43, 43,0), displaytype("waveform"), signalvariable("adisplay3"), zoom(-1)
-;signaldisplay bounds(630, 88, 120, 40), colour(255, 119, 119, 255), backgroundcolour(42, 43, 43,0), displaytype("waveform"), signalvariable("adisplay4"), zoom(-1)
+signaldisplay bounds(0, 70, 778, 40), colour(0,0,0), backgroundColour(42, 43, 43,0), displayType("waveform"), signalVariable("adisplaymain"), zoom(-1)
+;signaldisplay bounds(30, 88, 120, 40), colour(86,240,196), backgroundColour(42, 43, 43,0), displayType("waveform"), signalVariable("adisplay1"), zoom(-1)
+;signaldisplay bounds(230, 88, 120, 40), colour(108, 92, 232), backgroundColour(42, 43, 43,0), displayType("waveform"), signalVariable("adisplay2"), zoom(-1)
+;signaldisplay bounds(430, 88, 120, 40), colour(7,132,227), backgroundColour(42, 43, 43,0), displayType("waveform"), signalVariable("adisplay3"), zoom(-1)
+;signaldisplay bounds(630, 88, 120, 40), colour(255, 119, 119, 255), backgroundColour(42, 43, 43,0), displayType("waveform"), signalVariable("adisplay4"), zoom(-1)
 
 ;CHANNEL 1
-filebutton bounds(38, 138, 100, 20), populate(), text("SOURCE", "SOURCE"),identchannel("sourceIdent1"), file("samples/xpander_pad.wav"), channel("file1"),imgfile("On", "fileButton.png")imgfile("Off", "fileButton.png"), imgfile("On", "fileButton.png")imgfile("Off", "fileButton.png") fontcolour:0(48, 54, 44, 255)
-rslider bounds(14, 172, 70, 70), channel("Pitch1"), text("PITCH"), range(-2, 2, 0.35, 1, 0.001)  $KNOB1 ;, trackercolour(77,190,250, 250)
+filebutton bounds(38, 138, 100, 20), populate(), text("SOURCE", "SOURCE"),identChannel("sourceIdent1"), file("samples/xpander_pad.wav"), channel("file1"),imgFile("On", "fileButton.png")imgFile("Off", "fileButton.png"), imgFile("On", "fileButton.png")imgFile("Off", "fileButton.png") fontColour:0(48, 54, 44, 255)
+rslider bounds(14, 174, 70, 70), channel("Pitch1"), text("PITCH"), range(-2, 2, 0.35, 1, 0.001)  $KNOB1 ;, trackerColour(77,190,250, 250)
 rslider bounds(94, 174, 70, 70), channel("Stretch1"), text("STRETCH"), range(0.01, 2, 0.287, 1, 0.001) $KNOB1 
 rslider bounds(14, 254, 70, 70), channel("Density1"), text("DENSITY"), range(2, 32, 8, 1, 0.001) $KNOB1 
 rslider bounds(94, 254, 70, 70), channel("Size1"), text("SIZE"), range(0.1, 1, 0.43, 1, 0.001) $KNOB1
-combobox bounds(24, 344, 50, 20), channel("Type1"), items("LPF", "HPF"), colour(50,50,50,0),fontcolour(7,132,227)
-rslider bounds(14, 372, 70, 70), channel("Filter1"), text("FREQ"), range(200, 9000, 4000, 0.5, 0.001) $KNOB1 trackercolour(7,132,227)
+combobox bounds(24, 344, 50, 20), channel("Type1"), items("LPF", "HPF"), colour(50,50,50,0),fontColour(7,132,227)
+rslider bounds(14, 372, 70, 70), channel("Filter1"), text("FREQ"), range(200, 9000, 4000, 0.5, 0.001) $KNOB1 trackerColour(7,132,227)
 rslider bounds(94, 372, 70, 70), channel("Time1"), text("TIME"), range(0.001, 2, 0.25, 1, 0.001) $KNOB2 
 rslider bounds(14, 452, 70, 70), channel("Feedbk1"), text("FEEDBK"), range(0.001, 0.99, 0.25, 1, 0.001) $KNOB2 
 rslider bounds(94, 452, 70, 70), channel("Pshift1"), text("PSHIFT"), range(0.001, 1, 0.25, 1, 0.001) $KNOB2
 rslider bounds(94, 532, 70, 70), channel("Amount1"), text("AMOUNT"), range(0.001, 0.7, 0.65, 1, 0.001) $KNOB2 
-rslider bounds(14, 620, 70, 70), channel("Reverb1"), text("REVERB"), range(0, 1, 0.25, 1, 0.001) $KNOB1 trackercolour(255, 119, 119, 255) trackerinsideradius(0.01) trackerthickness(0.2)
-rslider bounds(94, 620, 70, 70), channel("Volume1"), text("VOLUME"), range(0, 0.3, 0.12, 1, 0.001) $KNOB1 colour(210, 215, 211, 255) outlinecolour(48, 54, 44, 50) popuptext("0") style("normal") textcolour(50, 50, 50, 255) trackercolour(50, 50, 50, 255) trackerinsideradius(0.01) trackerthickness(0.2)
+rslider bounds(14, 620, 70, 70), channel("Reverb1"), text("REVERB"), range(0, 1, 0.25, 1, 0.001) $KNOB1 trackerColour(255, 119, 119, 255) trackerInsideRadius(0.01) trackerThickness(0.2)
+rslider bounds(94, 620, 70, 70), channel("Volume1"), text("VOLUME"), range(0, 0.3, 0.12, 1, 0.001) $KNOB1 colour(210, 215, 211, 255) outlineColour(48, 54, 44, 50) popupText("0") style("normal") textColour(50, 50, 50, 255) trackerColour(50, 50, 50, 255) trackerInsideRadius(0.01) trackerThickness(0.2)
 
 ;CHANNEL 2
-filebutton bounds(238, 138, 100, 20), populate(), text("SOURCE", "SOURCE"),identchannel("sourceIdent2"), file("samples/bowbounce.wav"), channel("file2"),imgfile("On", "fileButton.png")imgfile("Off", "fileButton.png"), imgfile("On", "fileButton.png")imgfile("Off", "fileButton.png") fontcolour:0(48, 54, 44, 255)
-rslider bounds(214, 172, 70, 70), channel("Pitch2"), text("PITCH"), range(-2, 2, -0.1, 1, 0.001)  $KNOB1 ;, trackercolour(77,190,250, 250)
+filebutton bounds(238, 138, 100, 20), populate(), text("SOURCE", "SOURCE"),identChannel("sourceIdent2"), file("samples/bowbounce.wav"), channel("file2"),imgFile("On", "fileButton.png")imgFile("Off", "fileButton.png"), imgFile("On", "fileButton.png")imgFile("Off", "fileButton.png") fontColour:0(48, 54, 44, 255)
+rslider bounds(214, 172, 70, 70), channel("Pitch2"), text("PITCH"), range(-2, 2, -0.1, 1, 0.001)  $KNOB1 ;, trackerColour(77,190,250, 250)
 rslider bounds(294, 174, 70, 70), channel("Stretch2"), text("STRETCH"), range(0.01, 2, 0.3, 1, 0.001) $KNOB1 
 rslider bounds(214, 254, 70, 70), channel("Density2"), text("DENSITY"), range(2, 32, 28, 1, 0.001) $KNOB1 
 rslider bounds(294, 254, 70, 70), channel("Size2"), text("SIZE"), range(0.1, 1, 0.83, 1, 0.001) $KNOB1
-combobox bounds(224, 344, 50, 20), channel("Type2"), items("LPF", "HPF"), colour(50,50,50,0),fontcolour(7,132,227)
-rslider bounds(214, 372, 70, 70), channel("Filter2"), text("FREQ"), range(200, 9000, 3080, 0.5, 0.001) $KNOB1 trackercolour(7,132,227)
+combobox bounds(224, 344, 50, 20), channel("Type2"), items("LPF", "HPF"), colour(50,50,50,0),fontColour(7,132,227)
+rslider bounds(214, 372, 70, 70), channel("Filter2"), text("FREQ"), range(200, 9000, 3080, 0.5, 0.001) $KNOB1 trackerColour(7,132,227)
 rslider bounds(294, 372, 70, 70), channel("Time2"), text("TIME"), range(0.001, 2, 0.9, 1, 0.001) $KNOB2 
 rslider bounds(214, 452, 70, 70), channel("Feedbk2"), text("FEEDBK"), range(0.001, 0.99, 0.25, 1, 0.001) $KNOB2 
 rslider bounds(294, 452, 70, 70), channel("Pshift2"), text("PSHIFT"), range(0.001, 1, 0.25, 1, 0.001) $KNOB2
 rslider bounds(294, 532, 70, 70), channel("Amount2"), text("AMOUNT"), range(0.001, 0.7, 0.25, 1, 0.001) $KNOB2 
-rslider bounds(214, 620, 70, 70), channel("Reverb2"), text("REVERB"), range(0, 1, 0.4, 1, 0.001) $KNOB1 trackercolour(255, 119, 119, 255) trackerinsideradius(0.01) trackerthickness(0.2)
-rslider bounds(294, 620, 70, 70), channel("Volume2"), text("VOLUME"), range(0, 0.3, 0.09, 1, 0.001) $KNOB1 colour(210, 215, 211, 255) outlinecolour(48, 54, 44, 50) popuptext("0") style("normal") textcolour(50, 50, 50, 255) trackercolour(50, 50, 50, 255) trackerinsideradius(0.01) trackerthickness(0.2)
+rslider bounds(214, 620, 70, 70), channel("Reverb2"), text("REVERB"), range(0, 1, 0.4, 1, 0.001) $KNOB1 trackerColour(255, 119, 119, 255) trackerInsideRadius(0.01) trackerThickness(0.2)
+rslider bounds(294, 620, 70, 70), channel("Volume2"), text("VOLUME"), range(0, 0.3, 0.09, 1, 0.001) $KNOB1 colour(210, 215, 211, 255) outlineColour(48, 54, 44, 50) popupText("0") style("normal") textColour(50, 50, 50, 255) trackerColour(50, 50, 50, 255) trackerInsideRadius(0.01) trackerThickness(0.2)
 ;keyboard bounds(8, 0, 381, 95)
 
 ;CHANNEL 3
-filebutton bounds(438, 138, 100, 20), populate(), text("SOURCE", "SOURCE"),identchannel("sourceIdent3"), file("samples/ice.wav"), channel("file3"),imgfile("On", "fileButton.png")imgfile("Off", "fileButton.png"), imgfile("On", "fileButton.png")imgfile("Off", "fileButton.png") fontcolour:0(48, 54, 44, 255)
-rslider bounds(414, 172, 70, 70), channel("Pitch3"), text("PITCH"), range(-2, 2, 0.17, 1, 0.001)  $KNOB1 ;, trackercolour(77,190,250, 250)
+filebutton bounds(438, 138, 100, 20), populate(), text("SOURCE", "SOURCE"),identChannel("sourceIdent3"), file("samples/ice.wav"), channel("file3"),imgFile("On", "fileButton.png")imgFile("Off", "fileButton.png"), imgFile("On", "fileButton.png")imgFile("Off", "fileButton.png") fontColour:0(48, 54, 44, 255)
+rslider bounds(414, 172, 70, 70), channel("Pitch3"), text("PITCH"), range(-2, 2, 0.17, 1, 0.001)  $KNOB1 ;, trackerColour(77,190,250, 250)
 rslider bounds(494, 174, 70, 70), channel("Stretch3"), text("STRETCH"), range(0.01, 2, 1.56, 1, 0.001) $KNOB1 
 rslider bounds(414, 254, 70, 70), channel("Density3"), text("DENSITY"), range(2, 32, 25, 1, 0.001) $KNOB1 
 rslider bounds(494, 254, 70, 70), channel("Size3"), text("SIZE"), range(0.1, 1, 0.5, 1, 0.001) $KNOB1
-combobox bounds(424, 344, 50, 20), channel("Type3"), items("LPF", "HPF"), colour(50,50,50,0),fontcolour(7,132,227)
-rslider bounds(414, 372, 70, 70), channel("Filter3"), text("FREQ"), range(200, 9000, 4000, 0.5, 0.001) $KNOB1 trackercolour(7,132,227)
+combobox bounds(424, 344, 50, 20), channel("Type3"), items("LPF", "HPF"), colour(50,50,50,0),fontColour(7,132,227)
+rslider bounds(414, 372, 70, 70), channel("Filter3"), text("FREQ"), range(200, 9000, 4000, 0.5, 0.001) $KNOB1 trackerColour(7,132,227)
 rslider bounds(494, 372, 70, 70), channel("Time3"), text("TIME"), range(0.001, 2, 0.25, 1, 0.001) $KNOB2 
 rslider bounds(414, 452, 70, 70), channel("Feedbk3"), text("FEEDBK"), range(0.001, 0.99, 0.25, 1, 0.001) $KNOB2 
 rslider bounds(494, 452, 70, 70), channel("Pshift3"), text("PSHIFT"), range(0.001, 1, 0.25, 1, 0.001) $KNOB2
 rslider bounds(494, 532, 70, 70), channel("Amount3"), text("AMOUNT"), range(0.001, 0.7, 0.25, 1, 0.001) $KNOB2 
-rslider bounds(414, 620, 70, 70), channel("Reverb3"), text("REVERB"), range(0, 1, 0.4, 1, 0.001) $KNOB1 trackercolour(255, 119, 119, 255) trackerinsideradius(0.01) trackerthickness(0.2)
-rslider bounds(494, 620, 70, 70), channel("Volume3"), text("VOLUME"), range(0, 0.3, 0.09, 1, 0.001) $KNOB1 colour(210, 215, 211, 255) outlinecolour(48, 54, 44, 50) popuptext("0") style("normal") textcolour(50, 50, 50, 255) trackercolour(50, 50, 50, 255) trackerinsideradius(0.01) trackerthickness(0.2)
+rslider bounds(414, 620, 70, 70), channel("Reverb3"), text("REVERB"), range(0, 1, 0.4, 1, 0.001) $KNOB1 trackerColour(255, 119, 119, 255) trackerInsideRadius(0.01) trackerThickness(0.2)
+rslider bounds(494, 620, 70, 70), channel("Volume3"), text("VOLUME"), range(0, 0.3, 0.09, 1, 0.001) $KNOB1 colour(210, 215, 211, 255) outlineColour(48, 54, 44, 50) popupText("0") style("normal") textColour(50, 50, 50, 255) trackerColour(50, 50, 50, 255) trackerInsideRadius(0.01) trackerThickness(0.2)
 
 ;CHANNEL 4
-filebutton bounds(638, 138, 100, 20), populate(), text("SOURCE", "SOURCE"),identchannel("sourceIdent4"), file("samples/kik10.aif"), channel("file4"),imgfile("On", "fileButton.png")imgfile("Off", "fileButton.png"), imgfile("On", "fileButton.png")imgfile("Off", "fileButton.png") fontcolour:0(48, 54, 44, 255)
-rslider bounds(614, 172, 70, 70), channel("Pitch4"), text("PITCH"), range(-2, 2, 0.22, 1, 0.001)  $KNOB1 ;, trackercolour(77,190,250, 250)
+filebutton bounds(638, 138, 100, 20), populate(), text("SOURCE", "SOURCE"),identChannel("sourceIdent4"), file("samples/kik10.aif"), channel("file4"),imgFile("On", "fileButton.png")imgFile("Off", "fileButton.png"), imgFile("On", "fileButton.png")imgFile("Off", "fileButton.png") fontColour:0(48, 54, 44, 255)
+rslider bounds(614, 172, 70, 70), channel("Pitch4"), text("PITCH"), range(-2, 2, 0.22, 1, 0.001)  $KNOB1 ;, trackerColour(77,190,250, 250)
 rslider bounds(694, 174, 70, 70), channel("Stretch4"), text("STRETCH"), range(0.01, 2, 1.7, 1, 0.001) $KNOB1 
 rslider bounds(614, 254, 70, 70), channel("Density4"), text("DENSITY"), range(2, 32, 22, 1, 0.001) $KNOB1 
 rslider bounds(694, 254, 70, 70), channel("Size4"), text("SIZE"), range(0.1, 1, 0.39, 1, 0.001) $KNOB1
-combobox bounds(624, 344, 50, 20), channel("Type4"), items("LPF", "HPF"), colour(50,50,50,0),fontcolour(7,132,227)
-rslider bounds(614, 372, 70, 70), channel("Filter4"), text("FREQ"), range(200, 9000, 4000, 0.5, 0.001) $KNOB1 trackercolour(7,132,227)
+combobox bounds(624, 344, 50, 20), channel("Type4"), items("LPF", "HPF"), colour(50,50,50,0),fontColour(7,132,227)
+rslider bounds(614, 372, 70, 70), channel("Filter4"), text("FREQ"), range(200, 9000, 4000, 0.5, 0.001) $KNOB1 trackerColour(7,132,227)
 rslider bounds(694, 372, 70, 70), channel("Time4"), text("TIME"), range(0.001, 2, 0.25, 1, 0.001) $KNOB2 
 rslider bounds(614, 452, 70, 70), channel("Feedbk4"), text("FEEDBK"), range(0.001, 0.99, 0.25, 1, 0.001) $KNOB2 
 rslider bounds(694, 452, 70, 70), channel("Pshift4"), text("PSHIFT"), range(0.001, 1, 0.25, 1, 0.001) $KNOB2
 rslider bounds(694, 532, 70, 70), channel("Amount4"), text("AMOUNT"), range(0.001, 0.7, 0.25, 1, 0.001) $KNOB2 
-rslider bounds(614, 620, 70, 70), channel("Reverb4"), text("REVERB"), range(0, 1, 0.035, 1, 0.001) $KNOB1 trackercolour(255, 119, 119, 255) trackerinsideradius(0.01) trackerthickness(0.2)
-rslider bounds(694, 620, 70, 70), channel("Volume4"), text("VOLUME"), range(0, 0.3, 0.2, 1, 0.001) $KNOB1 colour(210, 215, 211, 255) outlinecolour(48, 54, 44, 50) popuptext("0") style("normal") textcolour(50, 50, 50, 255) trackercolour(50, 50, 50, 255) trackerinsideradius(0.01) trackerthickness(0.2)
-;keyboard bounds(10, 10, 100, 160), identchannel("widgetIdent")
+rslider bounds(614, 620, 70, 70), channel("Reverb4"), text("REVERB"), range(0, 1, 0.035, 1, 0.001) $KNOB1 trackerColour(255, 119, 119, 255) trackerInsideRadius(0.01) trackerThickness(0.2)
+rslider bounds(694, 620, 70, 70), channel("Volume4"), text("VOLUME"), range(0, 0.3, 0.2, 1, 0.001) $KNOB1 colour(210, 215, 211, 255) outlineColour(48, 54, 44, 50) popupText("0") style("normal") textColour(50, 50, 50, 255) trackerColour(50, 50, 50, 255) trackerInsideRadius(0.01) trackerThickness(0.2)
+;keyboard bounds(10, 10, 100, 160), identChannel("widgetIdent")
 ;filebutton bounds(10, 10, 75, 15), channel("button1"), text("Save"), populate("*.snaps"), mode ("snapshot")
 
 </Cabbage>
